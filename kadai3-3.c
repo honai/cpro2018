@@ -28,33 +28,25 @@ int comp_hand(){
 }
 
 int main(){
-  int hand=1;
-  int comp=1;
+  int hand;
+  int comp;
   int win;
   while(1){
     /* あいこ用のループ */
     hand = input();
     comp = comp_hand();
     printf("comp:%d vs You:%d => ", comp, hand);
-    if(!(hand==comp)){
+    if(hand!=comp){
       break;
     }
     printf("Try again.\n");
   }
 
-  /* 謎の勝敗判定方法 */
-  if(comp>hand){
-    if(comp-hand==5){
-      win = 0;
-    } else {
-      win = 1;
-    }
+  /* 勝敗判定 */
+  if((comp==0 && hand==5)||(comp==2 && hand==0)||(comp==5 && hand==2)){
+    win = 1;
   } else {
-    if(hand-comp==5){
-      win = 1;
-    } else {
-      win = 0;
-    }
+    win = 0;
   }
 
   if(win){

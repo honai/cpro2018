@@ -4,15 +4,17 @@
 
 /* 人間が手を選ぶ関数 */
 int input(){
-  int hand;
-  while(1){
-    printf("Your input (0,2,5): ");
-    scanf("%d", &hand);
-    if(hand==0||hand==2||hand==5){
-      break;
+  int i, hand;
+  do {
+    printf("n = ");
+    i = scanf("%d", &hand);
+    if(i != 1) { /* 入力値が整数以外の場合 */
+      scanf("%*s");
+      printf("Invalid input\n");
+    } else if (!(hand==0||hand==2||hand==5)) {
+      printf("Input 0 or 2 or 5\n");
     }
-    printf("\nInvalid input => Input again.\n");
-  }
+  } while(!(hand==0||hand==2||hand==5));
   return hand;
 }
 
@@ -42,22 +44,8 @@ int main(){
     printf("Try again.\n");
   }
 
-  /* 謎の勝敗判定方法 */
-  if(comp>hand){
-    if(comp-hand==5){
-      win = 0;
-    } else {
-      win = 1;
-    }
-  } else {
-    if(hand-comp==5){
-      win = 1;
-    } else {
-      win = 0;
-    }
-  }
-
-  if(win){
+  /* 勝敗判定方法 */
+  if((hand==5&&comp==2)||(hand==2&&comp==5)||(hand==0&&comp==5)){
     printf("You win.\n");
   } else {
     printf("You lose.\n");
